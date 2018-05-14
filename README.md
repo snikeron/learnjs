@@ -147,11 +147,18 @@ Just like *let* -- declarations are hoisted to the top but are **NOT** initializ
 4. While *var* and *let* can be declared without being initialized, *const* must be initialized during declaration.
 
 ## Some Code Examples
+### Comparison Operator
+Javascript evaluates '==' by just looking at the value and co-ercing the data-types (apples-to-apples).
+In order to do a comparison like in Ruby without coercion, use '==='.
+```js
+console.log('5' === 5) // false
+console.log('5' == 5) // true
+```
+### String interpolation
 ```javascript
 const firstName = 'Ruegen'
 const lastName = 'Aschenbrenner'
 
-// String interpolation
 // Note the use of "back-ticks"--> `
 const fullName = `${firstName} ${lastName}` 
 
@@ -182,6 +189,38 @@ console.log(result_string)
 
 ```js
 const fruit = ['Banana', 'Apple', 'Strawberry']
-const x = fruit[0](5 * 5)
-```
+const x = fruit[0](5 * 5) // returns a "not a function" error
+const x = fruit[0];(5 * 5) // 25
+console.log(x)
 
+```
+### Conditional Statements
+#### if statement
+```js
+const hungry = true || false
+if(hungry) {
+    console.log('Ruegen is huungry')
+} else {
+    console.log('Satisfied, burp!')
+}
+```
+#### else if statement
+```js
+const hungry = undefined
+if(hungry) {
+    console.log('Ruegen is hungry')
+} else if(hungry == undefined) {
+    console.log('Ruegen\'s hunger doesn\'t exist')
+} else {
+    console.log('burp')
+}
+```
+#### Ternary operator
+```js
+'5' === 5 ? console.log('hello') : console.log('nah mate')
+
+// can be new-lined, no problemo.
+'5' === 5 ? 
+    console.log('hello') : 
+    console.log('nah mate')
+```

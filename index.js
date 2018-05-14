@@ -47,9 +47,33 @@ const PI = 3.14 //example only.
 // const x = fruit[0]; (5 * 5)
 // console.log(x)
 
-const hungry = true || false
-if(hungry) {
-    console.log('Ruegen is huungry')
-} else {
-    console.log('Satisfied, burp!')
+// const hungry = true || false
+// if(hungry) {
+//     console.log('Ruegen is huungry')
+// } else {
+//     console.log('Satisfied, burp!')
+// }
+
+// const hungry = undefined
+
+// if(hungry) {
+//     console.log('Ruegen is hungry')
+// } else if(hungry == undefined) {
+//     console.log('Ruegen\'s hunger doesn\'t exist')
+// } else {
+//     console.log('burp')
+// }
+
+// console.log(5 == '5')
+
+// '5' === 5 ? 
+//     console.log('hello') : 
+//     console.log('nah mate')
+
+function add(x, y) {
+    console.log(x + y) // if this alone without "return"; function will return "undefined" even if the addition is carried out
+    // return(x + y) // returns the result
 }
+
+const result = add(7, 4)
+console.log(result)
