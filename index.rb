@@ -1,0 +1,1 @@
+celsius_temperature = 30
