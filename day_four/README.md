@@ -1,11 +1,15 @@
 # Sync / ASync
-## JavaScript: An Asynchronous Programming Language
-Credit to: [https://www.hongkiat.com/blog/synchronous-asynchronous-javascript/](https://www.hongkiat.com/blog/synchronous-asynchronous-javascript/)
+## JavaScript: An Asynchronous Programming Language (part 1)
+
+Credit to: 
+[https://www.hongkiat.com/blog/synchronous-asynchronous-javascript/](https://www.hongkiat.com/blog/synchronous-asynchronous-javascript/)
+[https://www.hongkiat.com/blog/synchronous-asynchronous-javascript-part2/](https://www.hongkiat.com/blog/synchronous-asynchronous-javascript-part2/)
 
 Two or more things are **synchronous** when they happen at the same time (in sync), and **asynchronous** when they don’t (not in sync).
 
 **Scenario 1**
 
+    You've got a hot date for a movie tonight but have homework due tomorrow. Luckily, Professor X knows everything.
     You call Professor X to answer and complete a difficult homework task and Professor X answers you right away, letting you know that it is done.
 
     Outcome:
@@ -59,3 +63,82 @@ However, waiting isn't ideal in all scenarios. You could potentially leave a mes
     What if a function can retire (emptying the call stack), and its message can be dequeued even before the task of the function is complete?
 
     What if you have code executed asynchronously?
+
+## JavaScript: An Asynchronous Programming Language (part 2)
+Let's imagine now that you leave a task for Professor X in the **message queue** but request that he may only began work on the task after **five hours**. 
+
+Of course, Professor X isn't simply going to hold on to your message and wait five hours while his **message queue** piles up with more tasks, so he hires another helper, Mr. H in addition to Mr. M, who runs the **message queue**.
+
+**Scenario 3**
+    Professor X asks Mr H to leave a new message for your task in the **message queue** only after the five hours have passed, then moves on to the next message in the queue.
+
+    After five hours have passed, Mr H then adds your message to the end of the queue. Only after all the messages in front of yours have been cleared, will Mr M then pass your message to Professor X, who carries out your requested task.
+
+In this way, you are able to leave a message in the **message queue** for the request to be carried out, without waiting for it to be fulfilled (receive a response).
+
+## The setTimeout() method
+```js
+setTimeout(function, delay-time, arg...)
+```
+The **function** runs after **delay-time**(in ms) with argument **arg**.
+
+This asynchronous method runs in a similar way to how Mr H handles your message with a delay in **Scenario 3**.
+
+When the timer expires, the function (**event**) **joins the queue**, and the **event loop** then picks it up when the **call stack** is free after processing all the messages before it.
+
+## AJAX - Asynchronous JavaScript and XML
+Uses the XHR API to **make server requests** and **handle the responses**.
+```js
+XMLHttpRequest
+```
+
+When browsers make server requests without using XHR, the **page refreshes** and **reloads its UI**. With XHR, the processing of **requests** and **responses** are handled by the XHR API, and the **UI remains unaffected**.
+
+The XHR API can **work in both synchronous and asynchronous ways**. XHR is set to **work asynchronously** by default.
+When a function makes a request using XHR, it returns **without waiting for the response**.
+
+If the XHR is set to **be synchronous**, the function then **waits until the response is received and processed before returning**.
+
+**XHR object creation:**
+```js
+// Asynchronous XHR
+var xhr = new XMLHttpRequest();
+xhr.open("GET", url);
+xhr.send();
+```
+
+**Example of asynchronous response:**
+```js
+// Asynchronous XHR
+
+// The hello.txt file in this example is a simple text file containing the text ‘hello’. The response property of XHR is invalid, since it didn’t output the text ‘hello’.
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "hello.txt");
+xhr.send();
+document.write(xhr.response); // empty string
+```
+XHR implements a micro-routine that keeps checking for response in every millisecond, and triggers complimentary events for the different states a request goes through. When the response is loaded, a load event is triggered by XHR, which can deliver a valid response.
+
+```js
+// Asynchronous XHR
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "hello.txt");
+xhr.send();
+xhr.onload = function(){ document.write(this.response) } // writes 'hello' to the document
+```
+
+Going the asynchronous way is preferred, as it **doesn’t block other scripts until the request is completed**.
+
+If the response has to be processed synchronously, we pass false as the last argument of open, which flags the XHR API saying it has to be synchronous (by default the last argument of open is true, which you needn’t explicitly specify).
+```js
+// Synchronous XHR
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "hello.txt", false);
+xhr.send();
+document.write(xhr.response); // writes 'hello' to document
+```
+
+# Take Home Points
+Almost all beginners make some mistakes with asynchronous concepts such as setTimeout() and AJAX, for example by assuming setTimeout() executes code after the delay time, or by processing response directly inside a function making an AJAX request.
+
+If you know how the puzzle fits, you can avoid such confusion. You know that the delay time in setTimeout() **does not indicate the time when the code execution starts, but the time when the timer expires and a new message is queued, which will only be processed when the call stack is free to do so**.
