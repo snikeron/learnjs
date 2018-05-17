@@ -1,5 +1,7 @@
 # Introduction: Javascript
+Biggest difference **from Ruby**:
 
+Remember your brackets and curly braces.
 ### Just a quick example
 1. In index.html
 ```html
@@ -22,26 +24,26 @@ In the example below, *tester* is **globally scoped** (exists outside of functio
 ```js
 var tester = "hey hi";
 
-    function newFunction() {
-        var hello = "hello";
-    }
-    console.log(hello); // error: hello is not defined
+function newFunction() {
+    var hello = "hello";
+}
+console.log(hello); // error: hello is not defined
 ```
 ***var* variables can be re-declared and updated**
 ```js
 var greeter = "hey hi";
-    greeter = "say Hello instead";
+greeter = "say Hello instead";
 ```
 #### Hoisting of *var*
 ```js
 console.log (greeter);
-    var greeter = "say hello"
+var greeter = "say hello"
 ```
 Interpreted in JS as:
 ```js
 var greeter;
-    console.log(greeter); //greeter is undefined
-    greeter = "say hello"
+console.log(greeter); //greeter is undefined
+greeter = "say hello"
 ```
 #### Downside of *var*
 
@@ -49,13 +51,13 @@ If you have declared *var* outside of a function, its scope is defined and canno
 Example:
 ```js
 var greeter = "hey hi"; // globally scoped
-    var times = 4;
+var times = 4;
 
-    if (times > 3) {
-        var greeter = "say Hello instead"; 
-    }
+if (times > 3) {
+    var greeter = "say Hello instead"; 
+}
 
-    console.log(greeter) //"say Hello instead"
+console.log(greeter) //"say Hello instead"
 ```
 
 ### LET
@@ -66,34 +68,34 @@ In Javascript, a block is a chunk of code bounded by { }.
 
 ```js
 let greeting = "say Hi";
-   let times = 4;
+let times = 4;
 
-   if (times > 3) {
-        let hello = "say Hello instead";
-        console.log(hello);//"say Hello instead"
-    }
-   console.log(hello) // hello is not defined
+if (times > 3) {
+    let hello = "say Hello instead";
+    console.log(hello);//"say Hello instead"
+}
+console.log(hello) // hello is not defined
 ```
 #### *let* can be *updated* but NOT *re-declared*
 ```js
 let greeting = "say Hi";
-    greeting = "say Hello instead";
+greeting = "say Hello instead";
 ```
 Is OK.
 ```js
 let greeting = "say Hi";
-    let greeting = "say Hello instead";//error: Identifier 'greeting' has already been declared
+let greeting = "say Hello instead";//error: Identifier 'greeting' has already been declared
 ```
 Not OK.
 
 *However*, if the same variable is **defined in different scopes**, there will be no error. They essentially exist as different variables because of their different scopes.
 ```js
 let greeting = "say Hi";
-    if (true) {
-        let greeting = "say Hello instead";
-        console.log(greeting);//"say Hello instead"
-    }
-    console.log(greeting);//"say Hi"
+if (true) {
+    let greeting = "say Hello instead";
+    console.log(greeting);//"say Hello instead"
+}
+console.log(greeting);//"say Hi"
 ```
 Therefore when using *let* you don't have to bother if you have used a name for a variable before as a variable exists only within its scope. Also, since a variable cannot be declared more than once within a scope, then the problem discussed earlier that occurs with var does not occur.
 #### Hoisting of *let*
@@ -120,9 +122,9 @@ Every const declaration therefore, must be initialized at the time of declaratio
 While *const* objects cannot be updated, the properties of a *const* object can be updated.
 ```js
 const flow = {
-        message : "say Hi",
-        times : 4
-    }
+    message : "say Hi",
+    times : 4
+}
 
 // cannot do this:
 const greeting = {
@@ -222,5 +224,35 @@ if(hungry) {
 // can be new-lined, no problemo.
 '5' === 5 ? 
     console.log('hello') : 
-    console.log('nah mate')
+    console.log('nah mate');
+```
+#### How Functions work in JS
+```js
+function add(x, y) {
+    return x + y
+}
+const z = add
+console.log(z) // [Function: add]
+```
+***Hang on, what now?*** 
+
+Note that the output prints the function as an object. The function does not run.
+
+    Meaning: The function has not been "invoked".
+
+Below example:
+```js
+function add(x, y) {
+    return x + y
+}
+const adding_stuff = add
+console.log(adding_stuff(1,2)) // 3
+
+OR
+
+function something() {
+    return "hello"
+}
+const hello1 = something() // hello --> returns the output of the function
+const hello2 = something // [Function: something] --> returns the function definition
 ```
