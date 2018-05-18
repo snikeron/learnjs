@@ -41,8 +41,7 @@ The answer is **both**.
 When someone labels JavaScript asynchronous, what they are referring to in general is how you can leave a message for it, and not have your call blocked with a "busy tone".
    
     JavaScript runs one line of code at a time.
-
-### Computer Sciencey Stuff (optional)
+## Get ready for some CompSci ...
 Function calls in JavaScript are **never direct**. They're done via a **messaging system**.
 
 In the below process, think of messages as a collection of corresponding codes (*function arguments* & *variables*):

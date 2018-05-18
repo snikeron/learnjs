@@ -1,7 +1,5 @@
 # Introduction: Javascript
-Biggest difference **from Ruby**:
-
-Remember your brackets and curly braces.
+Biggest difference **from Ruby**: Remember your brackets and curly braces.
 ### Just a quick example
 1. In index.html
 ```html
@@ -17,8 +15,16 @@ Go ahead and try it out on Live Reload on the browser.
 
 ## var, let or const ?
 Credit to: [Var, let and const- what's the difference?](https://dev.to/sarah_chima/var-let-and-const--whats-the-difference-69e)
-### VAR
-**Scope** essentially means where these variables are available for use. *var* declarations are globally scoped or function/locally scoped. It is globally scoped when a *var* variable is declared outside a function. This means that any variable that is declared with *var* outside a function block is available for use in the whole window. *var* is function scoped when it is declared within a function. This means that it is available and can be accessed only within that function.
+
+[>> Skip straight to Summary >>](#summary-of-*VAR*,-*LET*,-*CONST*)
+### Scopes
+Before launching into the differences, it is helpful to under scoping.
+
+**Scope** essentially means where variables are available for use. *var* declarations are globally scoped or function/locally scoped. 
+
+***var* is globally scoped** when it is declared outside of a function. This means that any variable that is declared with *var* outside of a function block is available for use in the whole window. 
+
+***var* is function scoped** when it is declared within a function. This means that it is available and can be accessed only within that function.
 
 In the example below, *tester* is **globally scoped** (exists outside of function) while *hello* is **function scoped** (exists only within function).
 ```js
@@ -29,7 +35,9 @@ function newFunction() {
 }
 console.log(hello); // error: hello is not defined
 ```
-***var* variables can be re-declared and updated**
+### VAR
+#### *let* is **block scoped**
+#### *var* variables can be re-declared and updated
 ```js
 var greeter = "hey hi";
 greeter = "say Hello instead";
@@ -46,7 +54,6 @@ console.log(greeter); //greeter is undefined
 greeter = "say hello"
 ```
 #### Downside of *var*
-
 If you have declared *var* outside of a function, its scope is defined and cannot be redefined.
 Example:
 ```js
@@ -61,7 +68,7 @@ console.log(greeter) //"say Hello instead"
 ```
 
 ### LET
-#### *let* is **block scoped**
+#### *let* declarations are **block scoped**
 In Javascript, a block is a chunk of code bounded by { }.
     
     Anything within { curly braces } is a block.
@@ -104,7 +111,7 @@ Similarly with *var*, *let* declarations are **hoisted** to the top, but they ar
     Reference Error
 
 ### CONST
-#### *const* declarations are also **block scoped**
+#### *const* declarations are **block scoped**
 
 #### *const* CANNOT be updated OR re-declared
 This means that the value of a variable declared with const remains the same within its scope. It cannot be updated or re-declared. So if we declare a variable with const, we can neither do this:
@@ -139,14 +146,24 @@ greeting.message = "say Hello instead";
 #### Hoisting of *const*
 Just like *let* -- declarations are hoisted to the top but are **NOT** initialized.
 
-### Summary of *var*, *let*, *const*
-1. *var* declarations are globally scoped or function scoped while *let* and *const* are block scoped.
+### Summary of *VAR*, *LET*, *CONST*
+1. Scopes
+    * *VAR* declarations are **global scoped** or **function scoped**
+    * *LET* and *CONST* are **block scoped**.
 
-2. *var* variables can be updated and re-declared within its scope; *let* variables can be updated but not re-declared; *const* variables can neither be updated nor re-declared.
+2. Mutability / Declaration
+    * **VAR** can be *updated and re-declared within its scope*
+    * **LET** can be *updated but not re-declared* 
+    * **CONST** can *neither be updated nor re-declared*
 
-3. They are all hoisted to the top of their scope but while varvariables are initialized with undefined, *let* and *const* variables are not initialized.
+3. Hoisting
+    * They are all hoisted to the top of their scope but:
+        * *VAR* is initialized with undefined 
+        * *LET* and *CONST* are not initialized.
 
-4. While *var* and *let* can be declared without being initialized, *const* must be initialized during declaration.
+4. Declaration
+    * *VAR* and *LET* can be declared without being initialized 
+    * *CONST* must be initialized during declaration.
 
 ## Some Code Examples
 ### Comparison Operator
