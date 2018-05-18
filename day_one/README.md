@@ -16,7 +16,7 @@ Go ahead and try it out on Live Reload on the browser.
 ## var, let or const ?
 Credit to: [Var, let and const- what's the difference?](https://dev.to/sarah_chima/var-let-and-const--whats-the-difference-69e)
 
-[>> Skip straight to Summary >>](#summary-of-*VAR*,-*LET*,-*CONST*)
+[>> Skip straight to Summary >>](#summary-of-var-let-const)
 ### Scopes
 Before launching into the differences, it is helpful to under scoping.
 
